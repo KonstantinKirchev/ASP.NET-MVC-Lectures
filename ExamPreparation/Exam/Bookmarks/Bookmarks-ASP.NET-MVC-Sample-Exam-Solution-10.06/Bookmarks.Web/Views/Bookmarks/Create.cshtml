@@ -1,0 +1,35 @@
+﻿@model Bookmarks.Web.InputModels.BookmarkInputModel
+@{
+    ViewBag.Title = "Create Bookmark";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    @Html.LabelFor(x => x.Title)
+    @Html.EditorFor(x => x.Title)
+    @Html.ValidationMessageFor(x => x.Title)
+    <br/>
+    @Html.LabelFor(x => x.Url)
+    @Html.EditorFor(x => x.Url)
+    @Html.ValidationMessageFor(x => x.Url)
+    <br />
+    @Html.LabelFor(x => x.Description)
+    @Html.EditorFor(x => x.Description)
+    @Html.ValidationMessageFor(x => x.Description)
+    <br />
+    @Html.LabelFor(x => x.CategoryId)
+    @Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories)
+    @Html.ValidationMessageFor(x => x.CategoryId)
+    <br />
+    <input type="submit" name="submit" value="Add Bookmark" />
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

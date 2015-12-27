@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Bookmarks.App.Models.ViewModels.BookmarkViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Bookmarks</h1>
+</div>
+<div class="row">
+    @Html.DisplayFor(x => x)
+</div>
+<div class="pull-right">
+    @Html.ActionLink("View all bookmarks...", "Index", "Bookmarks", new { }, new { @class = "btn btn-primary" })
+</div>
+
+<br />
+
+

@@ -1,0 +1,165 @@
+Правя си Blank Solution.
+Правя си 3те слоя Bookmarks.App, Bookmarks.Data, Bookmarks.Models
+От Solution си инсталирам Identity EF и инклудвам за 3те слоя.
+Вадя всичко от IdentityModels файла и ги пренасям съответно в Models ApplicationUser.cs и Data ApplicationDbContext.cs
+Добавям референция от Data към Models и от App към Data и Models
+Затривам файла IdentityModels.cs
+Rebuild вам, за да оправя грешките.
+Прекръствам ApplicationUser.cs на User.cs
+Отивам във AccountViewModels и на LoginViewModel сменям Email с Username
+В RegisterViewModel добавям поле и за Username 
+Отивам в Views.Account.Login за да го оправя. Същото правя и в Register.
+Отивам в AccountController.cs и там оправям нещата.(Login метода и Register метода ги оправям) и Rebuid на целият проект.
+Отивам в Web.config файла и си оправям connectionString.
+Отивам в IdentityConfig.cs и си оправям регистрацията да приема лесни пароли.
+Рънвам проекта за да видя дали ще мога да се регистрирам.
+Отивам в Data слоя и в Package Manager Console пиша Enable-Migrations –EnableAutomaticMigrations
+Migrations.Configuration класа го правя public, за да мога да виждам Configuration в Global.asax.cs!!!
+В Global.asax.cs(или ApplicationDbContext???) добавям Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+В Migrations.Configuration.cs добавям this.AutomaticMigrationDataLossAllowed = false;
+
+Започвам да си пиша моделите:
+Category.cs - Id и Name
+Bookmark - Id, Title, Description, CategoryId, virtual Category Category, virtual ICollection<Vote> Votes, virtual ICollection<Comment> Comments
+Vote - Id, Value, string UserId, int BookmarkId
+Comment - Id, Content, string UserId, int Bookmarks
+
+Отивам в ApplicationDbContext и си добавям IDbSet<Comment> и т.н.
+В Package Manager Console пиша update-database, за да си updateна базата.
+Отивам в базата и си правя диаграма, за да видя дали връзките между таблиците са наред.
+
+В Data слоя си правя две папки Repositories и UnitOfWork.
+Прекръствам ApplicationDbContext на BookmarksDbContext
+Правя IRepository, GenericRepository.
+Правя IBookmarksData, BookmarksData.
+Правя IBookmarksDbContext
+Rebuild вам проекта да видя дали всичко е наред.
+Ако не е наред трябва да отида в ApplicationDbContext и да override на OnModelCreating.
+Там си правя modelbuider и за всички необходими връзки между таблици си оправям техните връзки.
+Погледни проекта SportSystem, за да видиш примери за това как се прави modelbuilder!!!
+
+Следващата ОГРОМНА задача е SEED - ването на данни в базата.
+Погледни как се прави в проекта SportSystem !!!
+
+Правя си нотификации при успешно логване в системата. Гледай от 2:07:00 до 2:17:00 от подготовката за изпит SportSystem !!! 
+
+Връщам се в App слоя и почвам работа там.
+Правя си BaseController. Гледай от 2:27:00.
+
+После отивам в HomeController и наследявам BaseController
+Инсталирам си Ninject.MVC5.
+В NinjectWebCommon в RegisterServices добавям:
+	kernel.Bind<IBookmarksData>().To<BookmarksData>();
+	kernel.Bind<IBookmarksDbContext>().To<BookmarksDbContext>();
+Отивам BookmarksDbContext и наследявам IBookmarksDbContext.
+За повече разяснения 32:00 min от лекцията.
+Стартирам проекта и вече трябва да зареди страницата.
+
+Правя си още един проект клас library Bookmarks.Common
+Инсталирам през Solution Automapper за Common и App.
+Правя си папка Mappings и копирам всички файлове от предишен проект. 
+А сега малко разяснения кой файл за какво е:
+Използваме IMapTo.cs и IMapFrom.cs. Това са едни interface и които ни помагат когато имаме ViewModel.
+На всеки един ViewModel добавяме този interface и след това с рефлекшън може да вземем всички ViewModels които
+имплементират IMapFrom и да направим мапинги между ViewModel и EntityModel. Bind ваме даден ViewModel към даден EntityModel
+за което ни идва на помощ IMapTo.
+TypesMap е една структура която има source и destination която ни помага при правенето на мапингите.
+На AutoMapperConfig му подаваме assemblies и от тях взимаме всички типове.
+За повече информация от 35:00 мин до 39:00 мин
+
+В App слоя си добавям референция към Common слоя.
+Отивам в Global.asax.cs и си добавям следният ред:
+	var autoMapperConfig = new AutoMapperConfig( new List<Assembly> { Assembly.GetExecutingAssembly() });
+	autoMapperConfig.Execute();
+
+Преди тези два реда добавям нови два реда:
+	ViewEngines.Engines.Clear();
+	ViewEngines.Engines.Add(new RazorViewEngine());
+Това го правя, защото по default ViewEngines са два (пр.WebForms) и аз зачиствам и двата и после добавям само RazorViewEngine
+.............................................................................................................................
+40:00 мин
+Сега вече започвам да работя по конкретното задание на проекта. :)
+
+Отивам в View.Home.Index и си оправям визията на началната страница.
+След това отивам в HomeController и в Index() метода си правя заявка към базата, за да си всема всички Bookmarks.
+Създавам си BookmarkViewModel който го bind вам към Bookmark.
+Отивам в View.Home.Index и си добавям най-отгоре модела.
+
+Отивам в Views.Shared и си правя нова папка DisplayTemplates и в нея си създавам BookmarkViewModel.
+
+49:00 min важна информация за Html.ActionLink();
+
+После си правя BookmarksController и си правя action Details който приема id.
+След това си правя action Index където ще показвам всички bookmarks.
+За да покажа всички bookmarks ми трябва paging, за това си тегля една библиотека pagedlist.MVC 
+Отивам в Views.Bookmarks.Index и почвам да работя по него. Погледни го!!!
+Създавам два action Create HttpGet и HttpPost.
+Създавам си BookmarkBindingModel в папка BindingModels и го подавам на Create като модел
+[Required(AllowEmptyStrings = false, ErrorMessage = "The {0} is required!")] 
+[StringLength(200, ErrorMessage = "The length of {0} should be between {2} and {1}!")]
+Отивам в Create view и го оправям. Виж го!!!
+@Html.ValidationSummary(true) - Показва всички грешки и с true му казвам не ми показвай грешките на пропъртитата
+@Html.ValidationMessageFor(x => x.Title) - Ако полето има някаква грешка да се визуализира
+1:17:00 Не го разбирам гледай го пак!!!
+Правя си един метод LoadCategories и го викам и в двата Create.
+Трябва да си enable на javascript validation. Трябва да си добавя jquery.validate.unobtrusive.js
+1:30:00 Започвам да правя Ауторизации до 1:31:00 
+Правя си папка External Libraries и си добавям Kendo.Mvc.dll и System.Web.Mvc.Expressions.dll
+1:37:33 Завършвам с action Create
+1:37:33 Започвам да правя action Details в BookmarksController
+Правя си BookmarkDetailsViewModel и го мапвам от Bookmark
+Копирам всички proparties без валидациите и променям ICollection на IEnumerable, защото ако искам да присвоя IQueriable
+на ICollection няма да стане, а IQueriable е IEnumerable.
+Вместо Vote int Votes и вместо Comment подавам IEnumerable<CommentViewModel>
+Имплементирам custom mappings защото Votes няма как да разбере от къде да си ги мапне.
+След това отивам и си създавам CommentViewModel и го описвам по същият начин.
+Отивам в Views.Bookmarks.Details и си оправям view-то.
+Създавам си CommentViewModel в папка DisplayTemplates, за да мога да foreach на коментарите
+Трябва да си направя добавяне на коментар. В Details си правя Ajax.BeginForm()
+За да ми работи Ajax трябва да си добавя библиотеката jQuery.Unobtrusive Ajax
+И си добавям в Details @section scripts{} и си добавям скрипта за Ajax
+В BookmarksController си добавям action AddComment()
+В BindingModels си правя нов клас CommentBindingModel
+Връщам се в Views.Bookmarks.Details и си дописвам Ajax.BeginForm()
+Добавям и един скрипт за да ми изчисти полето за въвеждане при успешно добавено съобщение.
+Отивам в DisplayTemplates.CommentViewModel за да си добавя Delete бутон ако съобщението е от логнатия User.
+Отивам в BookmarksController, за да си добавя action DeleteComment()
+Отивам в Views.Bookmarks.Details и си добавям бутон за гласуване. От 2:13:20
+Отивам в BookmarksController, за да си добавя action Vote()
+В BookmarksDetailsViewModel си добавям public bool UserHasVoted { get; set; }
+и в CreateMappings мапвам UserHasVoted с currentUser
+Отивам в Views.Bookmarks.Details и си добавям script за премахване на + за гласуване след 1вият път
+
+2:35:00 Започвам да си правя Admin Area
+Създавам си CategoriesController който наследява AdminController който го слагам при другите контролери, а не в админската част
+2:37:30 Започвам да си правя Grid с всички CRUD операции в Views.Categories.Index
+2:45:00 Пълно обяснение как работи GRID !!!
+Всички Kendo методи трябва да са POST!!!
+От 2:49:00 Започва да прави всички actions в CategoriesController и да ги обяснява един по един
+2:55:00 Отивам да си оправя layout. Добавям скриптове.
+3:00:00 Показва как да си направим кеширане!!!
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
