@@ -1,0 +1,64 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Twitter.App.Models.ViewModels.TweetViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Twitter</h1>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        @if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            Html.RenderAction("PostTweet", "Tweets");
+        }
+
+        <div id="new-tweet" class="row"></div>
+
+        @if (@Model != null)
+        {
+            foreach (var tweet in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <img src=@tweet.Author.ProfileImage alt="Profile Image" class="media-object profile-image-sm tweet-profile-image"/>
+                        <span>@tweet.Author.Username</span>
+                        <time>@tweet.TweetedOn</time>
+                    </div>
+                    <div class="panel-body">@tweet.Content</div>
+                    <div class="panel-footer" style="text-align: right">
+                        @Html.ActionLink("Favourite", "FavorTweet", "Tweets", new { tweetId = tweet.Id }, new { @class = "btn btn-default btn-primary" })
+                        @Html.ActionLink("ReTweet", "ReTweet", "Tweets", new { tweetId = tweet.Id }, new { @class = "btn btn-default btn-primary" })
+                        @Html.ActionLink("Report", "Report", "Tweets", new { tweetId = tweet.Id }, new { @class = "btn btn-default btn-primary" })
+                    </div>
+                </div>
+            }
+
+            if (Model.HasNextPage || Model.HasPreviousPage)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            }
+        }
+    </div>
+    <div class="col-lg-4">
+        @using (Html.BeginForm("Search", "Users", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Search</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.TextArea("search", new {@class = "new-post-text-area"})
+                </div>
+                <div class="panel-footer" style="text-align: right">
+                    <input type="submit" class="btn btn-default btn-primary" value="Search"/>
+                </div>
+            </div>
+        }
+    </div>
+</div>

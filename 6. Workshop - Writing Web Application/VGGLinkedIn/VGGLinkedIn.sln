@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{196FA018-2FA2-4B14-8F58-1CE30E36CD10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6177701B-F103-4C25-8223-2F12042562A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "External Libraries", "{B357A89D-F19D-4286-93C0-CE804B985BE8}"
+	ProjectSection(SolutionItems) = preProject
+		External Libraries\System.Web.Mvc.Expressions.dll = External Libraries\System.Web.Mvc.Expressions.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDAAAE18-B5D5-421E-9CF9-560FE046DCD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E92AD73C-CEB1-4C11-821D-8D08455B7757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGGLinkedIn.Web", "VGGLinkedIn.Web\VGGLinkedIn.Web.csproj", "{0389E0B5-3847-4767-B745-A0146CDAD272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGGLinkedIn.Data", "VGGLinkedIn.Data\VGGLinkedIn.Data.csproj", "{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGGLinkedIn.Models", "VGGLinkedIn.Models\VGGLinkedIn.Models.csproj", "{E5A34605-D14A-4D5E-89ED-C864F8A842BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0389E0B5-3847-4767-B745-A0146CDAD272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0389E0B5-3847-4767-B745-A0146CDAD272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0389E0B5-3847-4767-B745-A0146CDAD272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0389E0B5-3847-4767-B745-A0146CDAD272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A34605-D14A-4D5E-89ED-C864F8A842BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A34605-D14A-4D5E-89ED-C864F8A842BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A34605-D14A-4D5E-89ED-C864F8A842BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A34605-D14A-4D5E-89ED-C864F8A842BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0389E0B5-3847-4767-B745-A0146CDAD272} = {E92AD73C-CEB1-4C11-821D-8D08455B7757}
+		{EA5FE78B-2987-4F8F-86CF-A6B0FF4A6181} = {6177701B-F103-4C25-8223-2F12042562A4}
+		{E5A34605-D14A-4D5E-89ED-C864F8A842BC} = {6177701B-F103-4C25-8223-2F12042562A4}
+	EndGlobalSection
+EndGlobal

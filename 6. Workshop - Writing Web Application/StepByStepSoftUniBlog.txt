@@ -1,0 +1,32 @@
+Създавам си Blank Solution. В него си създавам един ASP.NET MVC проект с име SoftUni.Blog.App
+Създавам си два отделни Class Library SoftUni.Blog.Models и SoftUni.Blog.Data.
+От IdentityModels си взимам ApplicationUser и го paste в Models проекта в клас ApplicationUser. 
+Инсталирам си пакета AspNet.Identity.
+От IdentityModels си взимам ApplicationDbContext и го paste в Data проекта в клас BlogContext.
+Инсталирам си пакета AspNet.Identity.
+Добавям референции от Data към Models и също така от App към Data и Models.
+В ApplicationDbContext сменям DefaultConnection в конструктора с SoftUniBlogConnection.
+Отивам в Web.config и сменям името на connectionString на SoftUniBlogConnection и си правя настройките на базата.
+Rebuild на целият проект и поправка на референциите по отделните класове.
+Когато изчезнат проблемите с Rebuild си сменям имената на класовете ApplicationUser на User и ApplicationDbContext на BlogDbContext.
+В App си инсталирам Glimpse.Mvc5 и Glimpse.EF6
+В Package Manager Console пиша Update-Package за да си updateна всичките пакети.
+Рънвам проекта и отивам на localhost:30386/Glimpse.axd за да си включа Glimpse
+Правя си папка Repositories и в нея IRepository и GenericEfRepository, за да мога да направя Dependancy Injection и да мокна базата.
+Правя си папка UnitOfWork и в нея ISoftUniBlogData и SoftUniBlogData.
+UnitOfWork имплементира няколко repositories наведнъж. Операцията по запазаване преминава през него. Цялото ъпдейтване е една операция, точно това е UnitOfWork.
+IRepository<User> Users { get; } няма set; защото имаме cashing.
+В UnitOfWork запазваме отделните repositories в един речник, който като му подадем типа на repository, проверява дали 
+такова repository има. Ако има ще ни го върне. Ако го няма ще го създаде. И това се нарича кеширане или запазване на информация
+за някакво състояние. Именно за това имаме само get; без set;
+Инсталирам Ninject, Ninject.Web.Common и Ninject.MVC5
+Отивам в App_Start в NinjectWebCommon и в метода RegisterServices си правя настройките.
+Създавам си BaseController.
+Работата на UserStore е да ми даде нов login.
+2:04:00 - Как да си направя paging. 
+3:10:00 - Как се сидват роли през seed метода. Не се hardcode-ват в базата!!!
+3:12:00 - Как си създавам един контролер чрез scaffolding. Генерирам си готови методи(CRUD) операции. Който трябва да се 
+преправят да работят с мапнатата база(UnitOfWork).
+
+ 
+  

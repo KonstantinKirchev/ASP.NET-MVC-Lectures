@@ -1,0 +1,22 @@
+﻿@model Twitter.App.Models.BindingModels.PostTweetBindingModel
+@{
+    ViewBag.Title = "Post New Tweet";
+}
+
+@using (Html.BeginForm("PostTweet", "Tweets", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <img src=@Model.Author.ProfileImage alt="Profile Image" class="media-object profile-image-sm tweet-profile-image"/>
+            <span style="margin-left: 10px"><b>@Model.Author.Username</b></span>
+        </div>
+        <div class="panel-body">
+            @Html.TextAreaFor(m => m.Content, new { @class = "new-post-text-area", @rows = "3" })
+        </div>
+        <div class="panel-footer" style="text-align: right">
+            <p class="text-success">@ViewBag.StatusMessage</p>
+            <input type="submit" class="btn btn-default btn-primary" value="Tweet"/>
+        </div>
+    </div>
+}

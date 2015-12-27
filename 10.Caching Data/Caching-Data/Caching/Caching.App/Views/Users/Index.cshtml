@@ -1,0 +1,27 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Caching.App.Models.ViewModels.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+<h2>Users</h2>
+
+<div class="jumbotron">
+    <h2>@DateTime.Now</h2>
+
+</div>
+
+@if (@Model.Any())
+{
+    @Html.DisplayForModel()
+    ;
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Users", new { page }))
+}
+else
+{
+    <div class="jumbotron info">
+        <h2>No users</h2>
+    </div>
+}
+
+

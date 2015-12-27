@@ -1,0 +1,29 @@
+﻿@using PagedList.Mvc
+@model Twitter.App.Models.ViewModels.UserAndTweetsViewModel
+@{
+    ViewBag.Title = @Model.User.Username + "\'s own tweets";
+}
+
+@Html.Partial("_UserHomePageHeader", Model.User)
+
+@foreach (var tweet in Model.TweetViewModels)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <img src=@tweet.Author.ProfileImage alt="Profile Image" class="media-object profile-image-sm tweet-profile-image" />
+            <span>@tweet.Author.Username</span>
+            <time>@tweet.TweetedOn</time>
+        </div>
+        <div class="panel-body">@tweet.Content</div>
+        <div class="panel-footer" style="text-align: right">
+            @Html.ActionLink("Favourite", "FavorTweet", "Tweets", new { tweetId = tweet.Id }, new {@class = "btn btn-default btn-primary" })
+            @Html.ActionLink("ReTweet", "ReTweet", "Tweets", new { tweetId = tweet.Id }, new {@class = "btn btn-default btn-primary" })
+            @Html.ActionLink("Report", "Report", "Tweets", new { tweetId = tweet.Id }, new {@class = "btn btn-default btn-primary" })
+        </div>
+    </div>
+}
+
+@if (Model.TweetViewModels.HasNextPage || Model.TweetViewModels.HasPreviousPage)
+{
+    @Html.PagedListPager(Model.TweetViewModels, page => Url.Action("Index", new {Model.User.Username, page }));
+}

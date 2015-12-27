@@ -1,0 +1,17 @@
+﻿@model IQueryable<Twitter.App.Models.ViewModels.NotificationViewModel>
+@{
+    ViewBag.Title = "Notifications";
+}
+
+<div class="jumbotron">
+    <h1>Notifications</h1>
+</div>
+@foreach (var notification in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <p>@notification.Content</p>
+            @Html.ActionLink("View more", "View", "Notifications", new { id = notification.Id }, new { title = notification.Content })
+        </div>
+    </div>
+}

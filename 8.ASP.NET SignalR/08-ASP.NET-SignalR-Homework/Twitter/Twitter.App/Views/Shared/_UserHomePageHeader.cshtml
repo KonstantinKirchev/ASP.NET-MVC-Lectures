@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNet.Identity
+@model Twitter.App.Models.ViewModels.UserViewModel
+
+<div class="row">
+    <div class="col-lg-12">
+        <img class="cover-image" src="@Model.CoverImage"/>
+        <img class="profile-image img-circle" src="@Model.ProfileImage"/>
+        <div>
+            <p class="username lead">@Model.Username</p>
+            @if (Model.Id != User.Identity.GetUserId() && !Model.IsFollowing && HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <form action="/@Model.Username/Users/Follow" method="POST">
+                    <input name="followUserId" type="hidden" value="@Model.Id"/>
+                    <input class="btn btn-default" type="submit" value="Follow"/>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="tabs">
+            <ul class="nav nav-pills">
+                <li role="presentation">
+                    <a href="/@Model.Username">Tweets</a>
+                </li>
+                <li role="presentation">
+                    <a href="/@Model.Username/Users/Following">Following</a>
+                </li>
+                <li role="presentation">
+                    <a href="/@Model.Username/Users/Followers">Followers</a>
+                </li>
+                <li role="presentation">
+                    <a href="/@Model.Username/Tweets/Favourite">Favourites</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

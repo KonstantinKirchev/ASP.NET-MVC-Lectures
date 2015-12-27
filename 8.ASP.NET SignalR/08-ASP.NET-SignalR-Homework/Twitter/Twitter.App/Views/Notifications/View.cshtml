@@ -1,0 +1,16 @@
+﻿@model Twitter.App.Models.ViewModels.NotificationViewModel
+@{
+    ViewBag.Title = "Notification #" + Model.Id;
+}
+
+<div class="jumbotron">
+    <h1>Notification #@Model.Id</h1>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p>@Model.Type.ToString()</p>
+        <p>@Model.Date</p>
+        <p>@Model.Content</p>
+    </div>
+</div>

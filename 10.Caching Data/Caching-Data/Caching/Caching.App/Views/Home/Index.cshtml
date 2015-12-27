@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Caching Home Page";
+}
+
+
+<div>
+    @{
+        Html.RenderAction("RssFeed", "Home", routeValues: new { area = "" });
+    }
+</div>

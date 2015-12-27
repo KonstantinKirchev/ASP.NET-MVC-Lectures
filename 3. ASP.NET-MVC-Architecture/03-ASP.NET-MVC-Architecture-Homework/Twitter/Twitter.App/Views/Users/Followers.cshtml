@@ -1,0 +1,22 @@
+﻿@using PagedList.Mvc
+@model Twitter.App.Models.ViewModels.UserAndFollowersViewModel
+@{
+    ViewBag.Title = @Model.User.Username + "\'s followers";
+}
+
+@Html.Partial("_UserHomePageHeader", Model.User)
+
+@foreach (var user in Model.Followers)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <img src=@user.ProfileImage alt="Profile Image" class="media-object profile-image-sm tweet-profile-image" />
+            <span>@user.Username</span>
+        </div>
+    </div>
+}
+
+@if (Model.Followers.HasNextPage || Model.Followers.HasPreviousPage)
+{
+    @Html.PagedListPager(Model.Followers, page => Url.Action("Following", new { Model.User.Username, page }));
+}

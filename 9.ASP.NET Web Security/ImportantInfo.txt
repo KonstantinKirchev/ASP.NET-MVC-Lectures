@@ -1,0 +1,13 @@
+SQL Injection - 30:00 min
+Cross-site scripting XSS - 58:00 min и 1:09:00 min [ValidateInput(false)]
+@Html.Raw(ViewBag.SomeText) - Премахва ескайпването което е по default в Razor
+Cross-site Request Forgery - 1:29:00. Гледай 1:47:45 до 1:51:00 много важно!!!
+Parameter Tampering - 1:52:00. Гледай 1:59:15 МНОГО ВАЖНО!!! Решението е да ползваме BindingModel.
+Да не подаваме на user повече данни от колкото е необходимо да редактира.
+
+
+
+ 
+
+
+

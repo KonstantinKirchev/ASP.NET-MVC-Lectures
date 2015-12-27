@@ -1,0 +1,16 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Caching.App.Models.SoftUniNewsModel>
+
+
+<div class="jumbotron">
+    <h2>@DateTime.Now</h2>
+</div>
+
+<div>
+    @if (Model.Any())
+    {
+        @Html.DisplayForModel()
+    }
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page }))
+</div>

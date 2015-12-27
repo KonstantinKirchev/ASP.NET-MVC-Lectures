@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Models", "Twitter.Models\Twitter.Models.csproj", "{F16E29E5-BCE8-4D3C-ADF8-CA70BE3101A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Data", "Twitter.Data\Twitter.Data.csproj", "{509A6323-A5EE-4D9E-80EB-7AA5664E3779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.App", "Twitter.App\Twitter.App.csproj", "{C9ED67EB-56C0-48F4-B39D-58F92E8CB68F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F16E29E5-BCE8-4D3C-ADF8-CA70BE3101A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16E29E5-BCE8-4D3C-ADF8-CA70BE3101A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16E29E5-BCE8-4D3C-ADF8-CA70BE3101A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16E29E5-BCE8-4D3C-ADF8-CA70BE3101A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509A6323-A5EE-4D9E-80EB-7AA5664E3779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509A6323-A5EE-4D9E-80EB-7AA5664E3779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509A6323-A5EE-4D9E-80EB-7AA5664E3779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509A6323-A5EE-4D9E-80EB-7AA5664E3779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9ED67EB-56C0-48F4-B39D-58F92E8CB68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9ED67EB-56C0-48F4-B39D-58F92E8CB68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9ED67EB-56C0-48F4-B39D-58F92E8CB68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9ED67EB-56C0-48F4-B39D-58F92E8CB68F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

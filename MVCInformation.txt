@@ -1,0 +1,47 @@
+3. Архитектура на ASP.NET MVC
+...........................................................................
+Това го пиша в контролера...
+[HttpPost, ActionName("Process")]
+[HandleError(ExceptionType = typeof(ArgumentException), View = "Error")]
+public ActionResult ProcessForm(string text)
+{
+	throw new ArgumentException();
+	return Context(text);
+}
+Това го пиша в Web.config
+<system.web>
+ <customErrors mode="On" defaultRedirect="Error">
+   <error statusCode="500" redirect="~/Views/Shared/500.cshtml" />
+   <error statusCode="404" redirect="~/Views/Shared/NotFound.cshtml" />
+ </customErrors>
+</system.web>
+...........................................................................
+1:37:00 ViewHelpers
+...........................................................................
+@using(Html.BeginForm("Test", "Home"))
+{
+	<input type="text" name="text" />
+	<input type="submit" value="Submit" />
+}
+@Html.TextBox("username", "", htmlAttributes: new {id = "my-id", @class = "my-class"})
+@Html.ActionLink("Click me", "Index", "Home", routeValues: new{})
+@Url.Action("Index", "Home")
+@Url.Content("~/Images/img.jpg")
+...........................................................................
+2:30:00 Areas
+...........................................................................
+@Model.Price.ToString("C", new CultureInfo("en-US"))
+...........................................................................
+4. Работа с данни
+...........................................................................
+7. SignalR
+...........................................................................
+Context е информация за средата в която се изпълнява нещо.
+
+
+
+
+
+
+
+

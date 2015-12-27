@@ -1,0 +1,15 @@
+﻿@model Twitter.App.Models.ViewModels.TweetViewModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <img src=@Model.Author.ProfileImage alt="Profile Image" class="media-object profile-image-sm tweet-profile-image" />
+        <span>@Model.Author.Username</span>
+        <time>@Model.TweetedOn</time>
+    </div>
+    <div class="panel-body">@Model.Content</div>
+    <div class="panel-footer" style="text-align: right">
+        @Html.ActionLink("Favourite", "FavorTweet", "Tweets", new { tweetId = Model.Id }, new { @class = "btn btn-default btn-primary" })
+        @Html.ActionLink("ReTweet", "ReTweet", "Tweets", new { tweetId = Model.Id }, new { @class = "btn btn-default btn-primary" })
+        @Html.ActionLink("Report", "Report", "Tweets", new { tweetId = Model.Id }, new { @class = "btn btn-default btn-primary" })
+    </div>
+</div>

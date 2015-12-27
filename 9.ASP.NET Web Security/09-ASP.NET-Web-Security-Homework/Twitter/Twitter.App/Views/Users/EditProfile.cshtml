@@ -1,0 +1,48 @@
+﻿@model Twitter.App.Models.ViewModels.EditProfileViewModel
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+@using (Html.BeginForm("EditProfile", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Edit Profile Form</h4>
+    <hr/>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProfileImage, new { @class = "col-md-2 control-label" })
+        <div class="col-md-offset-2 col-md-10">
+            @Html.TextBoxFor(m => m.ProfileImage, new {type = "file"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CoverImage, new { @class = "col-md-2 control-label" })
+        <div class="col-md-offset-2 col-md-10">
+            @Html.TextBoxFor(m => m.CoverImage, new { type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Edit Profile" class="btn btn-default"/>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
